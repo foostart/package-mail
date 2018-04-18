@@ -5,9 +5,9 @@ use Illuminate\Session\TokenMismatchException;
 /**
  * FRONT
  */
-Route::get('sample', [
-    'as' => 'sample',
-    'uses' => 'Foostart\Sample\Controllers\Front\SampleFrontController@index'
+Route::get('mail', [
+    'as' => 'mail',
+    'uses' => 'Foostart\Mail\Controllers\Front\MailFrontController@index'
 ]);
 
 
@@ -24,33 +24,33 @@ Route::group(['middleware' => ['web']], function () {
         /**
          * list
          */
-        Route::get('/admin/sample', [
-            'as' => 'admin_sample',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleAdminController@index'
+        Route::get('/admin/mail', [
+            'as' => 'admin_mail',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@index'
         ]);
 
         /**
          * edit-add
          */
-        Route::get('admin/sample/edit', [
-            'as' => 'admin_sample.edit',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleAdminController@edit'
+        Route::get('admin/mail/edit', [
+            'as' => 'admin_mail.edit',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@edit'
         ]);
 
         /**
          * post
          */
-        Route::post('admin/sample/edit', [
-            'as' => 'admin_sample.post',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleAdminController@post'
+        Route::post('admin/mail/edit', [
+            'as' => 'admin_mail.post',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@post'
         ]);
 
         /**
          * delete
          */
-        Route::get('admin/sample/delete', [
-            'as' => 'admin_sample.delete',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleAdminController@delete'
+        Route::get('admin/mail/delete', [
+            'as' => 'admin_mail.delete',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@delete'
         ]);
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////SAMPLES ROUTE///////////////////////////////
@@ -63,32 +63,32 @@ Route::group(['middleware' => ['web']], function () {
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////CATEGORIES///////////////////////////////
         ////////////////////////////////////////////////////////////////////////
-         Route::get('admin/sample_category', [
-            'as' => 'admin_sample_category',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleCategoryAdminController@index'
+         Route::get('admin/mail_category', [
+            'as' => 'admin_mail_category',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@index'
         ]);
 
         /**
          * edit-add
          */
-        Route::get('admin/sample_category/edit', [
-            'as' => 'admin_sample_category.edit',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleCategoryAdminController@edit'
+        Route::get('admin/mail_category/edit', [
+            'as' => 'admin_mail_category.edit',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@edit'
         ]);
 
         /**
          * post
          */
-        Route::post('admin/sample_category/edit', [
-            'as' => 'admin_sample_category.post',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleCategoryAdminController@post'
+        Route::post('admin/mail_category/edit', [
+            'as' => 'admin_mail_category.post',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@post'
         ]);
          /**
          * delete
          */
-        Route::get('admin/sample_category/delete', [
-            'as' => 'admin_sample_category.delete',
-            'uses' => 'Foostart\Sample\Controllers\Admin\SampleCategoryAdminController@delete'
+        Route::get('admin/mail_category/delete', [
+            'as' => 'admin_mail_category.delete',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@delete'
         ]);
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////CATEGORIES///////////////////////////////

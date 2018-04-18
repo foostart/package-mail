@@ -1,6 +1,6 @@
 <?php
 
-namespace Foostart\Sample\Controlers\Admin;
+namespace Foostart\Mail\Controlers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use URL,
     Route,
     Redirect;
-use Foostart\Sample\Models\Samples;
+use Foostart\Mail\Models\Mails;
 
-class SampleFrontController extends Controller
+class MailFrontController extends Controller
 {
     public $data = array();
     public function __construct() {
@@ -20,13 +20,13 @@ class SampleFrontController extends Controller
     public function index(Request $request)
     {
 
-        $obj_sample = new Samples();
-        $samples = $obj_sample->get_samples();
+        $obj_mail = new Mails();
+        $mails = $obj_mail->get_mails();
         $this->data = array(
             'request' => $request,
-            'samples' => $samples
+            'mails' => $mails
         );
-        return view('sample::sample.index', $this->data);
+        return view('mail::mail.index', $this->data);
     }
 
 }

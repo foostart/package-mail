@@ -23,23 +23,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `samples`
+-- Table structure for table `mails`
 --
 
-DROP TABLE IF EXISTS `samples`;
-CREATE TABLE `samples` (
-  `sample_id` int(11) NOT NULL,
-  `sample_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `mails`;
+CREATE TABLE `mails` (
+  `mail_id` int(11) NOT NULL,
+  `mail_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `category_id` int(11) NOT NULL,
-  `sample_image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `mail_image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `samples`
+-- Dumping data for table `mails`
 --
 
-INSERT INTO `samples` (`sample_id`, `sample_name`, `category_id`, `sample_image`, `status_id`) VALUES
+INSERT INTO `mails` (`mail_id`, `mail_name`, `category_id`, `mail_image`, `status_id`) VALUES
 (1, 'Ronaldo 7', 0, '', 0),
 (2, 'Messi', 0, '', 0),
 (3, 'Rooney', 0, '', 0),
@@ -51,20 +51,20 @@ INSERT INTO `samples` (`sample_id`, `sample_name`, `category_id`, `sample_image`
 --
 
 --
--- Indexes for table `samples`
+-- Indexes for table `mails`
 --
-ALTER TABLE `samples`
-  ADD PRIMARY KEY (`sample_id`);
+ALTER TABLE `mails`
+  ADD PRIMARY KEY (`mail_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `samples`
+-- AUTO_INCREMENT for table `mails`
 --
-ALTER TABLE `samples`
-  MODIFY `sample_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `mails`
+  MODIFY `mail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
