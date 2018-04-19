@@ -4,10 +4,9 @@ namespace Foostart\Mail;
 
 use Illuminate\Support\ServiceProvider;
 use LaravelAcl\Authentication\Classes\Menu\SentryMenuFactory;
-
-use URL, Route;
+use URL,
+    Route;
 use Illuminate\Http\Request;
-
 
 class MailServiceProvider extends ServiceProvider {
 
@@ -17,30 +16,27 @@ class MailServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot(Request $request) {
-        /**
-         * Publish
-         */
-         $this->publishes([
-            __DIR__.'/config/mail_admin.php' => config_path('mail_admin.php'),
-        ],'config');
 
-        $this->loadViewsFrom(__DIR__ . '/views', 'mail');
+        //generate context key
+//        $this->generateContextKey();
 
+        // load view
+        $this->loadViewsFrom(__DIR__ . '/Views', 'package-mail');
 
-        /**
-         * Translations
-         */
-         $this->loadTranslationsFrom(__DIR__.'/lang', 'mail');
+        // include view composers
+        require __DIR__ . "/composers.php";
 
+        // publish config
+        $this->publishConfig();
 
-        /**
-         * Load view composer
-         */
-        $this->mailViewComposer($request);
+        // publish lang
+        $this->publishLang();
 
-         $this->publishes([
-                __DIR__.'/../database/migrations/' => database_path('migrations')
-            ], 'migrations');
+        // publish views
+        $this->publishViews();
+
+        // publish assets
+        $this->publishAssets();
 
     }
 
@@ -51,55 +47,46 @@ class MailServiceProvider extends ServiceProvider {
      */
     public function register() {
         include __DIR__ . '/routes.php';
-
-        /**
-         * Load controllers
-         */
-        $this->app->make('Foostart\Mail\Controllers\Admin\MailAdminController');
-
-         /**
-         * Load Views
-         */
-        $this->loadViewsFrom(__DIR__ . '/views', 'mail');
     }
 
     /**
-     *
+     * Public config to system
+     * @source: vendor/foostart/package-mail/config
+     * @destination: config/
      */
-    public function mailViewComposer(Request $request) {
+    protected function publishConfig() {
+        $this->publishes([
+            __DIR__ . '/config/package-mail.php' => config_path('package-mail.php'),
+                ], 'config');
+    }
 
-        view()->composer('mail::mail*', function ($view) {
-            global $request;
-            $mail_id = $request->get('id');
-            $is_action = empty($mail_id)?'page_add':'page_edit';
+    /**
+     * Public language to system
+     * @source: vendor/foostart/package-mail/lang
+     * @destination: resources/lang
+     */
+    protected function publishLang() {
+        $this->publishes([
+            __DIR__ . '/lang' => base_path('resources/lang'),
+        ]);
+    }
 
-            $view->with('sidebar_items', [
+    /**
+     * Public view to system
+     * @source: vendor/foostart/package-mail/Views
+     * @destination: resources/views/vendor/package-mail
+     */
+    protected function publishViews() {
 
-                /**
-                 * Mails
-                 */
-                //list
-                trans('mail::mail_admin.page_list') => [
-                    'url' => URL::route('admin_mail'),
-                    "icon" => '<i class="fa fa-list-ul" aria-hidden="true"></i>'
-                ],
-                //add
-                trans('mail::mail_admin.'.$is_action) => [
-                    'url' => URL::route('admin_mail.edit'),
-                    "icon" => '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'
-                ],
+        $this->publishes([
+            __DIR__ . '/Views' => base_path('resources/views/vendor/package-mail'),
+        ]);
+    }
 
-                /**
-                 * Categories
-                 */
-                //list
-                trans('mail::mail_admin.page_category_list') => [
-                    'url' => URL::route('admin_mail_category'),
-                    "icon" => '<i class="fa fa-sitemap" aria-hidden="true"></i>'
-                ],
-            ]);
-            //
-        });
+    protected function publishAssets() {
+        $this->publishes([
+            __DIR__ . '/public' => public_path('packages/foostart/package-mail'),
+        ]);
     }
 
 }

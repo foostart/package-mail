@@ -16,82 +16,96 @@ Route::get('mail', [
  */
 Route::group(['middleware' => ['web']], function () {
 
-    Route::group(['middleware' => ['admin_logged', 'can_see']], function () {
+    Route::group(['middleware' => ['admin_logged', 'can_see'],
+                  'namespace' => 'Foostart\Mail\Controllers\Admin',
+        ], function () {
 
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////SAMPLES ROUTE///////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
+        /*
+          |-----------------------------------------------------------------------
+          | Manage mail
+          |-----------------------------------------------------------------------
+          | 1. List of mails
+          | 2. Edit mail
+          | 3. Delete mail
+          | 4. Add new mail
+          | 5. Manage configurations
+          | 6. Manage languages
+          |
+        */
+
         /**
          * list
          */
-        Route::get('/admin/mail', [
-            'as' => 'admin_mail',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@index'
+        Route::get('admin/mails/list', [
+            'as' => 'mails.list',
+            'uses' => 'MailAdminController@index'
         ]);
 
         /**
          * edit-add
          */
-        Route::get('admin/mail/edit', [
-            'as' => 'admin_mail.edit',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@edit'
+        Route::get('admin/mails/edit', [
+            'as' => 'mails.edit',
+            'uses' => 'MailAdminController@edit'
+        ]);
+
+        /**
+         * copy
+         */
+        Route::get('admin/mails/copy', [
+            'as' => 'mails.copy',
+            'uses' => 'MailAdminController@copy'
         ]);
 
         /**
          * post
          */
-        Route::post('admin/mail/edit', [
-            'as' => 'admin_mail.post',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@post'
+        Route::post('admin/mails/edit', [
+            'as' => 'mails.post',
+            'uses' => 'MailAdminController@post'
         ]);
 
         /**
          * delete
          */
-        Route::get('admin/mail/delete', [
-            'as' => 'admin_mail.delete',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@delete'
-        ]);
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////SAMPLES ROUTE///////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
-
-
-
-
-        
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////CATEGORIES///////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
-         Route::get('admin/mail_category', [
-            'as' => 'admin_mail_category',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@index'
+        Route::get('admin/mails/delete', [
+            'as' => 'mails.delete',
+            'uses' => 'MailAdminController@delete'
         ]);
 
         /**
-         * edit-add
+         * trash
          */
-        Route::get('admin/mail_category/edit', [
-            'as' => 'admin_mail_category.edit',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@edit'
+         Route::get('admin/mails/trash', [
+            'as' => 'mails.trash',
+            'uses' => 'MailAdminController@trash'
         ]);
 
         /**
-         * post
-         */
-        Route::post('admin/mail_category/edit', [
-            'as' => 'admin_mail_category.post',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@post'
+         * configs
+        */
+        Route::get('admin/mails/config', [
+            'as' => 'mails.config',
+            'uses' => 'MailAdminController@config'
         ]);
-         /**
-         * delete
-         */
-        Route::get('admin/mail_category/delete', [
-            'as' => 'admin_mail_category.delete',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailCategoryAdminController@delete'
+
+        Route::post('admin/mails/config', [
+            'as' => 'mails.config',
+            'uses' => 'MailAdminController@config'
         ]);
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////CATEGORIES///////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
+
+        /**
+         * language
+        */
+        Route::get('admin/mails/lang', [
+            'as' => 'mails.lang',
+            'uses' => 'MailAdminController@lang'
+        ]);
+
+        Route::post('admin/mails/lang', [
+            'as' => 'mails.lang',
+            'uses' => 'MailAdminController@lang'
+        ]);
+
     });
 });
