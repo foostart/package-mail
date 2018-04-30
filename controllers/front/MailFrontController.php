@@ -10,7 +10,7 @@ use URL,
     Redirect;
 use Foostart\Mail\Models\Mails;
 
-class MailUserController extends Controller
+class MailFrontController extends Controller
 {
     public $data = array();
     public function __construct() {

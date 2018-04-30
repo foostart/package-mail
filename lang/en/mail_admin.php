@@ -2,11 +2,14 @@
 
 return [
 
-    "package_name" => 'Mail',
-    "package_description" => 'Mail package is for initial',
+    "package_name" => 'mail',
+    "package_description" => 'mail package is for initial',
     "order" => '#',
     "operations" => 'Operations',
-    'mail_category_name_label' => 'Mail category name:',
+    'mail_category_name_label' => 'mail category name:',
+    'mail_id' => 'Mail ID',
+    'mail_name' => 'Mail Address',
+    
     /**
      * Page
      */
@@ -16,6 +19,7 @@ return [
     'page_edit' => 'Update mail item',
     'page_search' => 'Mail page search',
     'page_category'=> 'List categories of mail',
+    'page_send'=> 'Send mail page',
 
     /**
      * Form
@@ -23,13 +27,13 @@ return [
     'form_heading' => 'General data',
     'form_add' => 'Add new mail item',
     'form_edit' => 'Update mail item',
-    'name' => 'Name',
+    'name' => 'Mail address',
     'mail_required_name' => 'Required name',
     'required' => 'is required',
     'search' => 'Search',
     'mail_name_label' => 'Mail name:',
-    'mail_name_placeholder' => 'mail name',
-    'mail_category_name'=> 'Mail category name',
+    'mail_name_placeholder' => 'Mail name',
+    'mail_category_name'=> 'mail category name',
 
     /**
      * Message
@@ -38,31 +42,20 @@ return [
     'message_add_successfully' => 'Add new mail item successfully',
     'message_delete_successfully' => 'Delete mail item successfully',
     'message_find_failed' => 'No results found.',
+    'message_send_mail_successfully' => 'Mail send successfully',
+
+    /**
+     * Button
+     */
+    'mail_add_button' => 'Add new mail',
 
     /**
      * Validator message
      */
     'title_unvalid_length' => 'Unvalid lenght title. Allow from: <b>:TITLE_MIN_LENGTH</b> to <b>:TITLE_MAX_LENGTH</b>.',
 
-    'mail_name' => 'Mail name',
-
     /**
      * Validator message
      */
-    'delete_confirm' => 'Are you sure to delete this item?',
-
-    /**
-     *
-     */
-    'tab_overview' => 'Overview',
-    'tab_attributes' => 'Attributes',
-
-
-    ////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////CATEGORIES///////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    'page_category_list' => 'Categories',
-    'mail_category_add_button' => 'Add new mail category',
-    'mail_categoty_id' => 'Category ID',
-    'mail_categoty_name' => 'Category name',
+    'delete_confirm' => 'Are you sure to delete this item?', 
 ];

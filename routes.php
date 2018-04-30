@@ -16,96 +16,55 @@ Route::get('mail', [
  */
 Route::group(['middleware' => ['web']], function () {
 
-    Route::group(['middleware' => ['admin_logged', 'can_see'],
-                  'namespace' => 'Foostart\Mail\Controllers\Admin',
-        ], function () {
+    Route::group(['middleware' => ['admin_logged', 'can_see']], function () {
 
-        /*
-          |-----------------------------------------------------------------------
-          | Manage mail
-          |-----------------------------------------------------------------------
-          | 1. List of mails
-          | 2. Edit mail
-          | 3. Delete mail
-          | 4. Add new mail
-          | 5. Manage configurations
-          | 6. Manage languages
-          |
-        */
-
+        ////////////////////////////////////////////////////////////////////////
+        ////////////////////////////MailS ROUTE///////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
         /**
          * list
          */
-        Route::get('admin/mails/list', [
-            'as' => 'mails.list',
-            'uses' => 'MailAdminController@index'
+        Route::get('admin/mail', [
+            'as' => 'admin_mail',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@index'
         ]);
 
         /**
          * edit-add
          */
-        Route::get('admin/mails/edit', [
-            'as' => 'mails.edit',
-            'uses' => 'MailAdminController@edit'
-        ]);
-
-        /**
-         * copy
-         */
-        Route::get('admin/mails/copy', [
-            'as' => 'mails.copy',
-            'uses' => 'MailAdminController@copy'
+        Route::get('admin/mail/edit', [
+            'as' => 'admin_mail.edit',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@edit'
         ]);
 
         /**
          * post
          */
-        Route::post('admin/mails/edit', [
-            'as' => 'mails.post',
-            'uses' => 'MailAdminController@post'
+        Route::post('admin/mail/edit', [
+            'as' => 'admin_mail.post',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@post'
         ]);
 
         /**
          * delete
          */
-        Route::get('admin/mails/delete', [
-            'as' => 'mails.delete',
-            'uses' => 'MailAdminController@delete'
+        Route::get('admin/mail/delete', [
+            'as' => 'admin_mail.delete',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@delete'
         ]);
 
         /**
-         * trash
+         * send mail
          */
-         Route::get('admin/mails/trash', [
-            'as' => 'mails.trash',
-            'uses' => 'MailAdminController@trash'
+        Route::get('admin/mail/mail_prepare', [
+            'as' => 'admin_mail.mail_prepare',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@mailPrepare'
         ]);
-
-        /**
-         * configs
-        */
-        Route::get('admin/mails/config', [
-            'as' => 'mails.config',
-            'uses' => 'MailAdminController@config'
+        
+        // GET SEND MAIL
+        Route::post('admin/mail/send', [
+            'as' => 'admin_mail.send',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@mailSend'
         ]);
-
-        Route::post('admin/mails/config', [
-            'as' => 'mails.config',
-            'uses' => 'MailAdminController@config'
-        ]);
-
-        /**
-         * language
-        */
-        Route::get('admin/mails/lang', [
-            'as' => 'mails.lang',
-            'uses' => 'MailAdminController@lang'
-        ]);
-
-        Route::post('admin/mails/lang', [
-            'as' => 'mails.lang',
-            'uses' => 'MailAdminController@lang'
-        ]);
-
     });
 });
