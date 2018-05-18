@@ -71,6 +71,15 @@ class Mails extends Model {
         ]);
         return $mail;
     }
+    public function send($input) {
+
+        $mail = self::create([
+                    'mail_name' => $input['mail_name'],
+                    'mail_content' => $input['mail_content'],
+        ]);
+        return $mail;
+    }
+    
     public function deleteItem($input = [], $delete_type) {
 
         $item = $this->find($input['id']);

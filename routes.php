@@ -66,5 +66,13 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'admin_mail.send',
             'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@mailSend'
         ]);
+        
+         /**
+         * send all mail
+         */
+        Route::get('admin/mail/sendAll', [
+            'as' => 'admin_mail.sendAll',
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@sendAll'
+        ]);
     });
 });

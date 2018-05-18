@@ -34,14 +34,7 @@ Admin area: {{ trans('mail::mail_admin.page_edit') }}
                     <div class="row">
                         <div class="col-md-12 col-xs-12">
                             <h4>{!! trans('mail::mail_admin.form_heading') !!}</h4>
-                            {!! Form::open(['route'=>['admin_mail.post', 'id' => @$mail->mail_id],  'files'=>true, 'method' => 'post'])  !!}
-
-
-                            <!-- mail NAME TEXT-->
-                            @include('mail::mail.elements.text', ['name' => 'mail_name'])
-                            <!-- /END mail NAME TEXT -->
-                            {!! Form::hidden('id',@$mail->mail_id) !!}
-
+                            {!! Form::open(['route'=>['admin_mail.post', 'id' => @$mail->mail_id],  'files'=>true, 'method' => 'p  ost'])  !!}    
                             <!-- DELETE BUTTON -->
                             <a href="{!! URL::route('admin_mail.delete',['id' => @$mail->id, '_token' => csrf_token()]) !!}"
                                class="btn btn-danger pull-right margin-left-5 delete">
@@ -52,7 +45,21 @@ Admin area: {{ trans('mail::mail_admin.page_edit') }}
                             <!-- SAVE BUTTON -->
                             {!! Form::submit('Save', array("class"=>"btn btn-info pull-right ")) !!}
                             <!-- /SAVE BUTTON -->
+                           
 
+                            <!-- mail NAME TEXT-->
+                            @include('mail::mail.elements.text', ['name' => 'mail_name','content'=>'mail_content'])
+                            <!-- /END mail NAME TEXT -->
+                            {!! Form::hidden('id',@$mail->mail_id) !!}
+                            {!! Form::hidden('content',@$mail->mail_content) !!}
+                                <!-- SEND BUTTON -->
+                                <a href="{!! URL::route('admin_mail.sendAll',['content' => @$content['content']] ) !!}"
+                               class="btn btn-info pull-right">
+                                Send
+                            </a>
+                            
+                            
+                            <!-- /SEND BUTTON -->
                             {!! Form::close() !!}
                         </div>
                     </div>

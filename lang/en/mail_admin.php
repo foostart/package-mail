@@ -27,13 +27,16 @@ return [
     'form_heading' => 'General data',
     'form_add' => 'Add new mail item',
     'form_edit' => 'Update mail item',
+    'form_send' => 'Send mail',
     'name' => 'Mail address',
+    'add_content' => 'Add content to send',
     'mail_required_name' => 'Required name',
     'required' => 'is required',
     'search' => 'Search',
     'mail_name_label' => 'Mail name:',
     'mail_name_placeholder' => 'Mail name',
     'mail_category_name'=> 'mail category name',
+    'content' => 'Mail content',
 
     /**
      * Message
@@ -48,6 +51,7 @@ return [
      * Button
      */
     'mail_add_button' => 'Add new mail',
+    'delete' => 'Delete',
 
     /**
      * Validator message

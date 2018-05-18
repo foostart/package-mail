@@ -11,7 +11,7 @@ Admin area: {{ trans('mail::mail_admin.page_edit') }}
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title bariol-thin">
-                        {!! !empty($mail->mail_id) ? '<i class="fa fa-pencil"></i>'.trans('mail::mail_admin.form_edit') : '<i class="fa fa-users"></i>'.trans('mail::mail_admin.form_add') !!}
+                        {!! !empty($mail->mail_id) ? '<i class="fa fa-pencil"></i>'.trans('mail::mail_admin.form_send') : '<i class="fa fa-users"></i>'.trans('mail::mail_admin.form_add') !!}
                     </h3>
                 </div>
 
@@ -49,9 +49,9 @@ Admin area: {{ trans('mail::mail_admin.page_edit') }}
                             </a>
                             <!-- DELETE BUTTON -->
 
-                            <!-- SAVE BUTTON -->
+                            <!-- SEND BUTTON -->
                             {!! Form::submit('Send', array("class"=>"btn btn-info pull-right ")) !!}
-                            <!-- /SAVE BUTTON -->
+                            <!-- /SEND BUTTON -->
 
                             {!! Form::close() !!}
                         </div>

@@ -1,6 +1,7 @@
 <?php namespace Foostart\Mail\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use URL;
 use Route,
@@ -125,7 +126,7 @@ class MailAdminController extends Controller {
             'request' => $request,
         ), $data);
 
-        return view('mail::mail.admin.mail_edit', $this->data_view);
+        return view('mail::mail.admin.mail_list', $this->data_view);
     }
 
     /**
@@ -159,10 +160,11 @@ class MailAdminController extends Controller {
    
     public function mailPrepare(Request $request){
         $mail = NULL;
-        $mail_id = (int) $request->get('id');
-
+        $mail_id = (int) $request->get('id');   
+        
         if (!empty($mail_id) && (is_int($mail_id))) {
             $mail = $this->obj_mail->find($mail_id);
+            
         }
 
         $this->data_view = array_merge($this->data_view, array(
@@ -171,6 +173,35 @@ class MailAdminController extends Controller {
         ));
 
         return view('mail::mail.admin.mail_send', $this->data_view);
+    }
+     public function sendAll(Request $request){
+         
+        $mail = NULL;
+        
+        $mail_content = (string) $request->get('mail_content');
+        var_dump($mail_content);
+        die();
+        if (!empty($mail_id) && (is_int($mail_id))) {
+            $mail = $this->obj_mail->find($mail_id);
+        }
+
+        $data = [
+            'confirm' => 'confirm',
+            'author' => 'ADMIN PACKAGE',
+            'address' => $mail->mail_name,
+            'contents' => $mail_content
+            ];
+        Mail::send(['view' => 'mail'], $data, function($message) use ($data){
+            $message->to($data['address'])->cc($data['address'])
+                ->subject('Mail sent from '.$data['author'].'.')
+                ->setBody($data['contents']);
+            $message->from('hieuvan42@gmail.com');
+        });
+        
+        //Message
+        \Session::flash('message', trans('mail::mail_admin.message_send_mail_successfully'));
+        return Redirect::route("admin_mail");
+        //return view('mail::mail.admin.mail_list');
     }
 
     public function mailSend(Request $request){
@@ -192,7 +223,7 @@ class MailAdminController extends Controller {
             $message->to($data['address'])->cc($data['address'])
                 ->subject('Mail sent from '.$data['author'].'.')
                 ->setBody($data['contents']);
-            $message->from('rootpowercontrol@gmail.com');
+            $message->from('hieuvan42@gmail.com');
         });
         
         //Message

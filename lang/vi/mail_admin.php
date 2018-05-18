@@ -23,6 +23,8 @@ return [
     'form_heading' => 'General data',
     'form_add' => 'Add new mail item',
     'form_edit' => 'Update mail item',
+    'form_send' => 'Send mail',
+    'form_content' => 'Add content to send',
     'name' => 'Name',
     'mail_required_name' => 'Required name',
     'required' => 'is required',
