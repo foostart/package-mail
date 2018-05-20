@@ -42,6 +42,8 @@ class MailServiceProvider extends ServiceProvider {
                 __DIR__.'/../database/migrations/' => database_path('migrations')
             ], 'migrations');
 
+         // publish assets
+        $this->publishAssets();
     }
 
     /**
@@ -91,6 +93,12 @@ class MailServiceProvider extends ServiceProvider {
             ]);
             //
         });
+    }
+
+     protected function publishAssets() {
+        $this->publishes([
+            __DIR__ . '/public' => public_path('packages/foostart/package-mail'),
+        ]);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Foostart\Mail\Controlers\Admin;
+namespace Foostart\Mail\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,13 +20,13 @@ class MailFrontController extends Controller
     public function index(Request $request)
     {
 
-        $obj_mail = new Mails();
-        $mails = $obj_mail->get_mails();
+        $obj_Mail = new Mails();
+        $Mails = $obj_Mail->get_Mails();
         $this->data = array(
             'request' => $request,
-            'mails' => $mails
+            'Mails' => $Mails
         );
-        return view('mail::mail.index', $this->data);
+        return view('Mail::Mail.index', $this->data);
     }
 
 }

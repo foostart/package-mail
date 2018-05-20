@@ -5,9 +5,13 @@ use Illuminate\Session\TokenMismatchException;
 /**
  * FRONT
  */
-Route::get('mail', [
-    'as' => 'mail',
-    'uses' => 'Foostart\Mail\Controllers\Front\MailFrontController@index'
+// Route::get('mail', [
+//     'as' => 'mail',
+//     'uses' => 'Foostart\Mail\Controllers\Front\MailFrontController@index'
+// ]);
+Route::get('team', [
+    'as' => 'mails.team',
+    'uses' => 'Foostart\Mail\Controllers\Front\TeamController@index'
 ]);
 
 
@@ -34,7 +38,7 @@ Route::group(['middleware' => ['web']], function () {
          */
         Route::get('admin/mail/edit', [
             'as' => 'admin_mail.edit',
-            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@edit'
+            'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@edit'    
         ]);
 
         /**
@@ -73,6 +77,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('admin/mail/sendAll', [
             'as' => 'admin_mail.sendAll',
             'uses' => 'Foostart\Mail\Controllers\Admin\MailAdminController@sendAll'
+        ]);
+        Route::get('admin/mails/search', [
+            'as' => 'mails.search',
+            'uses' => 'MailAdminController@search'
         ]);
     });
 });
